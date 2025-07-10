@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h> // for rand()
 #include "deck.h"
 
 // this function intializes the deck with the traditional spanish deck which is 40 cards we omit the 8's 9's and 10's 
@@ -35,7 +37,23 @@ void initDeck(Deck* deck)
         deck->top = 0; 
     }
 
+// function to shuffle the spanish deck of 40 cards we are going to be using the improved 
+// version of the Fisher Yates algo
+void shuffleDeck(Deck* deck) 
+{
 
+  printf("[DEBUG] Shuffling deck...\n");  // Add this line
+  for (int currentDeckIndex = DECK_SIZE - 1; currentDeckIndex > 0; currentDeckIndex--)
+  {
+      int randomDeckIndex = rand() % (currentDeckIndex + 1);
+
+      Card temp = deck->cards[currentDeckIndex];
+      deck->cards[currentDeckIndex] = deck->cards[randomDeckIndex];
+      deck->cards[randomDeckIndex] = temp;
+printf("[DEBUG] Shuffle complete.\n");  // Optional: Confirm end
+
+  }
+}
 
 
 
@@ -45,12 +63,12 @@ void initDeck(Deck* deck)
 
         // string arrays to print both suit names and rank names
         // declare all suit names 
-        const char* suitNames[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
+       static const char* suitNames[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
 
         // declare all ranknames for all suits should be 40 cards in deck total
-        const char* rankNames[] = {"Invalid",
+       static const char* rankNames[] = {"Invalid",
                                     "ACE", "TWO", "THREE", "FOUR","FIVE","SIX","SEVEN",
-                                    "Invalid","Invalid","Invalid",
+                                   "Invalid","Invalid","Invalid",
                                     "JACK","QUEEN","KING", 
                                   };
 
@@ -64,4 +82,4 @@ void initDeck(Deck* deck)
         
         printf("Card %2d: %-5s of %-8s\n", playDeck, rankNames[rank] , suitNames[suits]);
         }
-    }
+          }

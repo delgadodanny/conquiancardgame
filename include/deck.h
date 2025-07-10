@@ -24,6 +24,11 @@ Card drawCard(Deck* deck);
 int isDeckEmpty(Deck* deck);
 
 
+// for testing purposes
+void printDeck(const Deck* deck);
+
+
+
 
 
 

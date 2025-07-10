@@ -1,0 +1,12 @@
+# Ignore build output
+conquian.exe
+conquian
+*.o
+*.out
+
+# VS Code settings
+.vscode/
+
+# OS/system files
+.DS_Store
+Thumbs.db
